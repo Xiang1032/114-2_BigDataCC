@@ -3,7 +3,7 @@
 
 === 任務 1：grep 搜尋 ===
 在 /etc/passwd 中搜尋你的帳號名稱：
-grep 你的帳號 /etc/passwd
+grep spes1 /etc/passwd
 
 spes1:x:1000:1000:,,,:/home/spes1:/bin/bash
 
@@ -12,6 +12,7 @@ grep bash /etc/passwd
 
 root:x:0:0:root:/root:/bin/bash
 spes1:x:1000:1000:,,,:/home/spes1:/bin/bash
+
 
 === 任務 2：管線操作 ===
 列出 /etc 目錄下的檔案數量：
@@ -32,6 +33,7 @@ apport
 apt
 bash.bashrc
 bash_completion
+
 
 === 任務 3：重導向 ===
 將 ls -la ~ 的結果存入檔案：
