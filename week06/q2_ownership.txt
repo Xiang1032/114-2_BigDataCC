@@ -1,0 +1,72 @@
+姓名：劉家样
+學號：C111181141
+=== 任務 1：探索 Linux 目錄結構 ===
+執行以下指令：
+ls /
+bin                home               lost+found  root                srv
+bin.usr-is-merged  init               media       run                 sys
+boot               lib                mnt         sbin                tmp
+dev                lib.usr-is-merged  opt         sbin.usr-is-merged  usr
+etc                lib64              proc        snap                var
+
+請從上面的結果中，說明以下 5 個目錄各是做什麼的：
+/home：使用者的家目錄，存放每個一般使用者的個人檔案。
+
+/etc：存放系統所有的設定檔（例如密碼檔、網路設定）。
+
+/var：存放變動性高的檔案（例如系統日誌 Log、暫存郵件）。
+
+/tmp：存放暫時性的檔案，系統重啟時通常會清空。
+
+/usr：存放使用者安裝的應用程式、函式庫與執行檔（類似 Windows 的 Program Files）。
+
+=== 任務 2：查看空間與檔案統計 ===
+查看自己家目錄佔用多少空間：
+du -sh ~
+
+1.2M    /home/spes1
+
+計算自己家目錄下有多少個檔案：
+find ~ -type f | wc -l
+
+157
+
+計算自己家目錄下有多少個目錄：
+find ~ -type d | wc -l
+
+94
+
+=== 任務 3：chown 與 chgrp 實作 ===
+請依序執行以下指令並貼上每步的結果：
+
+步驟 1：建立測試檔案並查看預設擁有者
+touch ~/week06_test.txt
+echo "Ownership Test" > ~/week06_test.txt
+ls -l ~/week06_test.txt
+-rw-r--r-- 1 spes1 spes1 15 Apr 14 08:43 /home/spes1/week06_test.txt
+
+步驟 2：建立測試用的使用者和群組
+sudo useradd -m tempuser
+sudo groupadd tempgroup
+(無輸出表示成功)）
+
+步驟 3：用 chown 改變擁有者
+sudo chown tempuser ~/week06_test.txt
+ls -l ~/week06_test.txt
+-rw-r--r-- 1 tempuser spes1 15 Apr 14 08:43 /home/spes1/week06_test.txt
+
+步驟 4：用 chgrp 改變群組
+sudo chgrp tempgroup ~/week06_test.txt
+ls -l ~/week06_test.txt
+-rw-r--r-- 1 tempuser tempgroup 15 Apr 14 08:43 /home/spes1/week06_test.txt
+
+步驟 5：用 chown 一次改回自己
+sudo chown $(whoami):$(whoami) ~/week06_test.txt
+ls -l ~/week06_test.txt
+-rw-r--r-- 1 spes1 spes1 15 Apr 14 08:43 /home/spes1/week06_test.txt
+
+步驟 6：清理
+rm ~/week06_test.txt
+sudo userdel -r tempuser
+sudo groupdel tempgroup
+userdel: tempuser mail spool (/var/mail/tempuser) not found

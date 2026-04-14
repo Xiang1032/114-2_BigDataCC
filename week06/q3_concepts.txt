@@ -1,0 +1,45 @@
+姓名：劉家样
+學號：C111181141
+
+Q1：chown 和 chmod 有什麼不同？請分別說明它們的功能，並各舉一個使用情境。
+A1：chown (Change Owner)：
+
+功能：修改檔案或目錄的「擁有者」或「所屬群組」。
+
+情境：你把一個專案資料夾從 A 帳號移交給 B 帳號管理時，需要用 chown 改名。
+
+chmod (Change Mode)：
+
+功能：修改檔案或目錄的「存取權限」（讀、寫、執行）。
+
+情境：你寫了一個腳本，發現不能跑，需要用 chmod +x 賦予它執行的權限。
+
+Q2：你和 3 位同學要合作做專題，需要在 Linux 上建立一個共用資料夾，
+    讓組員都能讀寫檔案，但其他人不能存取。
+    請寫出你會使用的指令（提示：需要建立群組、設定目錄的群組和權限）。
+A2：建立群組：sudo groupadd projectA
+
+將組員加入群組：sudo usermod -aG projectA user1 (以此類推)
+
+建立資料夾：mkdir /home/shared_project
+
+修改資料夾群組：sudo chgrp projectA /home/shared_project
+
+設定權限：chmod 770 /home/shared_project
+(註：770 代表擁有者與群組都能讀寫執行，其他人完全不能進去)
+
+Q3：Linux 判斷權限時，是按什麼順序檢查的？
+    假設一個檔案的權限是 rwxr-x---，擁有者是 alice，群組是 project。
+    請回答以下三個人分別能做什麼操作：
+    (a) alice（擁有者）能做什麼？
+    (b) bob（屬於 project 群組）能做什麼？
+    (c) charlie（不屬於 project 群組）能做什麼？
+A3：
+Linux 檢查順序為：擁有者 (User) -> 群組 (Group) -> 其他人 (Others)。一旦符合身分，就不會再往下檢查。
+針對權限 rwxr-x---：
+
+(a) alice：具有 rwx 權限，可以讀取、修改、執行該檔案。
+
+(b) bob：具有 r-x 權限，可以讀取、執行檔案，但不能修改內容。
+
+(c) charlie：具有 --- 權限，完全無法讀取或操作該檔案。
