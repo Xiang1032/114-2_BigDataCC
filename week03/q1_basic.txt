@@ -1,0 +1,41 @@
+姓名：劉家样
+學號：c111181141
+
+=== whoami ===
+spes1
+
+=== hostname ===
+Yang
+
+=== pwd ===
+/home/spes1/114-2_BigDataCC/week03
+
+=== uname -a ===
+Linux Yang 6.6.87.2-microsoft-standard-WSL2 #1 SMP PREEMPT_DYNAMIC Thu Jun  5 18:30:46 UTC 2025 x86_64 x86_64 x86_64 GNU/Linux
+
+=== date ===
+Tue Apr 14 07:59:27 CST 2026
+
+=== ls / ===
+bin                home               lost+found  root                srv
+bin.usr-is-merged  init               media       run                 sys
+boot               lib                mnt         sbin                tmp
+dev                lib.usr-is-merged  opt         sbin.usr-is-merged  usr
+etc                lib64              proc        snap                var
+
+=== ls -la ~ ===
+total 48
+drwxr-x--- 7 spes1 spes1 4096 Mar 23 22:59 .
+drwxr-xr-x 4 root  root  4096 Mar 31 15:26 ..
+-rw------- 1 spes1 spes1 3144 Mar 31 16:00 .bash_history
+-rw-r--r-- 1 spes1 spes1  220 Mar 23 21:22 .bash_logout
+-rw-r--r-- 1 spes1 spes1 3771 Mar 23 21:22 .bashrc
+drwx------ 2 spes1 spes1 4096 Mar 23 21:22 .cache
+-rw-r--r-- 1 spes1 spes1   55 Mar 23 22:59 .gitconfig
+drwxr-xr-x 3 spes1 spes1 4096 Mar 23 21:25 .local
+-rw-rw-r-- 1 spes1 spes1    0 Apr 14 07:35 .motd_shown
+-rw-r--r-- 1 spes1 spes1  807 Mar 23 21:22 .profile
+-rw-r--r-- 1 spes1 spes1    0 Mar 23 21:23 .sudo_as_admin_successful
+drwxr-xr-x 6 spes1 spes1 4096 Apr 14 07:45 114-2_BigDataCC
+drwxr-xr-x 3 spes1 spes1 4096 Mar 23 22:48 GitHub
+drwxr-xr-x 4 spes1 spes1 4096 Mar 23 22:36 week04

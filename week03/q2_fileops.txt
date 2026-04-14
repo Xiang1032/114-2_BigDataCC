@@ -1,0 +1,47 @@
+姓名：劉家样
+學號：C111181141
+
+=== 步驟 1：mkdir week03test ===
+無輸出
+
+=== 步驟 2：cd week03test ===
+-bash: cd: week03tes: No such file or directory
+
+=== 步驟 3：建立三個檔案 ===
+使用的指令：
+touch hello.txt learning.txt vm.txt
+
+=== 步驟 4：ls -l ===
+total 24
+-rw-r--r-- 1 spes1 spes1 5430 Mar 23 22:43 README.md
+-rw-r--r-- 1 spes1 spes1    0 Apr 14 08:01 hello.txt
+-rw-r--r-- 1 spes1 spes1    0 Apr 14 07:52 hello_backup.txt
+-rw-r--r-- 1 spes1 spes1    0 Apr 14 08:01 learning.txt
+-rw-r--r-- 1 spes1 spes1 1475 Apr 14 08:01 q1_basic.txt
+-rw-r--r-- 1 spes1 spes1   22 Mar 23 22:43 q2_fileops.txt
+-rw-r--r-- 1 spes1 spes1   19 Mar 23 22:43 q3_compare.txt
+-rw-r--r-- 1 spes1 spes1    0 Apr 14 07:52 virtualization.txt
+-rw-r--r-- 1 spes1 spes1    0 Apr 14 08:01 vm.txt
+drwxr-xr-x 2 spes1 spes1 4096 Apr 14 07:52 week03test
+
+=== 步驟 5：cp hello.txt hello_backup.txt ===
+無輸出
+
+=== 步驟 6：mv vm.txt virtualization.txt ===
+無輸出
+
+=== 步驟 7：ls -l（最終結果） ===
+total 24
+-rw-r--r-- 1 spes1 spes1 5430 Mar 23 22:43 README.md
+-rw-r--r-- 1 spes1 spes1    0 Apr 14 08:01 hello.txt
+-rw-r--r-- 1 spes1 spes1    0 Apr 14 08:03 hello_backup.txt
+-rw-r--r-- 1 spes1 spes1    0 Apr 14 08:01 learning.txt
+-rw-r--r-- 1 spes1 spes1 1475 Apr 14 08:01 q1_basic.txt
+-rw-r--r-- 1 spes1 spes1   22 Mar 23 22:43 q2_fileops.txt
+-rw-r--r-- 1 spes1 spes1   19 Mar 23 22:43 q3_compare.txt
+-rw-r--r-- 1 spes1 spes1    0 Apr 14 08:01 virtualization.txt
+drwxr-xr-x 2 spes1 spes1 4096 Apr 14 07:52 week03test
+
+=== 問答 ===
+Q：最終目錄中有哪些檔案？和步驟 4 相比，發生了什麼變化？
+A：沒有
