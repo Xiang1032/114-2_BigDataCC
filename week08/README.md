@@ -5,9 +5,9 @@
 | 項目 | 說明 |
 |------|------|
 | 對應教科書 | 5-3 MySQL 資料庫、5-4 SQL 語法 |
-| 繳交方式 | 在 Fork 的 week08/ 資料夾中建立四個檔案，發 PR 繳交 |
+| 繳交方式 | 在 Fork 的 week08/ 資料夾中建立四個檔案，push 到 Fork |
 | 繳交期限 | 下週上課前 |
-| PR 標題格式 | 學號_姓名_week08 |
+| PR 標題 | 學號_姓名（僅首次繳交時建立，之後 push 自動更新） |
 
 ---
 
@@ -23,7 +23,7 @@
    git commit -m "完成第8週作業"
    git push origin main
    ```
-6. 到 GitHub 網頁發 PR，標題：`學號_姓名_week08`
+6. push 到你的 Fork 即可（W3 已建立的 PR 會自動更新）
 
 ---
 
@@ -59,26 +59,17 @@ sudo service mysql start
 sudo service mysql status
 （貼上結果，應顯示 running）
 
-=== 任務 3：設定密碼並登入 ===
+=== 任務 3：登入 MySQL ===
 
-步驟 1：進入 MySQL 設定密碼
+步驟 1：用 sudo 登入 MySQL（WSL 預設不需要密碼）
 sudo mysql
-（進入後執行以下 SQL）
+（貼上登入成功畫面，應顯示 Welcome to the MySQL monitor）
 
-ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'bigdata2026';
-FLUSH PRIVILEGES;
-EXIT;
-（貼上結果）
-
-步驟 2：用密碼登入
-mysql -u root -p
-（輸入密碼 bigdata2026 登入）
-
-步驟 3：確認版本
+步驟 2：確認版本
 SELECT VERSION();
 （貼上結果）
 
-步驟 4：查看預設資料庫
+步驟 3：查看預設資料庫
 SHOW DATABASES;
 （貼上結果）
 ```
@@ -250,22 +241,34 @@ A：
 - [ ] week08/q2_create.txt 包含建立 port_db、ships 表、自行設計 crew 表、觀念回答
 - [ ] week08/q3_query.txt 包含新增資料、3 題條件查詢、修改刪除、觀念回答
 - [ ] week08/q4_stats.txt 包含統計函數、GROUP BY、LEFT JOIN、觀念回答
-- [ ] 已 push 到自己的 Fork
-- [ ] 已發 PR，標題格式：學號_姓名_week08
+- [ ] 已 push 到 Fork（確認 PR 中可看到本週 commit）
 
 ---
 
 ## 常見問題
 
+**Q：安裝 MySQL 時出現 `unmet dependencies` 或 `held broken packages`？**
+這是 WSL 套件庫版本衝突，常見於長時間沒更新的環境。依序嘗試：
+```bash
+# 步驟 1：完整更新套件庫
+sudo apt update && sudo apt upgrade -y
+
+# 步驟 2：修復相依性
+sudo apt --fix-broken install
+
+# 步驟 3：重新安裝
+sudo apt install -y mysql-server
+```
+如果仍然失敗，可能是 Ubuntu 版本太舊。執行 `lsb_release -a` 確認版本，建議使用 Ubuntu 22.04 以上。若版本過舊，在 Windows PowerShell 中重裝 WSL：
+```powershell
+wsl --install -d Ubuntu-22.04
+```
+
 **Q：WSL 中 `sudo service mysql start` 出現錯誤？**
 嘗試 `sudo service mysql restart`。如果仍然失敗，執行 `sudo apt install --reinstall mysql-server` 重新安裝。
 
 **Q：`mysql -u root -p` 輸入密碼後顯示 Access denied？**
-用 `sudo mysql` 進入後重新設定密碼：
-```sql
-ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'bigdata2026';
-FLUSH PRIVILEGES;
-```
+WSL 上的 MySQL 預設不使用密碼，請用 `sudo mysql` 登入（不需要 `-u root -p`）。執行 .sql 檔案也一樣用 `sudo mysql < week08.sql`。
 
 **Q：每次開 WSL 都要重新啟動 MySQL 嗎？**
 是的。WSL 中的服務不會自動啟動，每次開啟 WSL 後要執行 `sudo service mysql start`。
@@ -284,3 +287,19 @@ CREATE DATABASE port_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 **Q：LEFT JOIN 結果中出現 NULL 是什麼意思？**
 表示左邊的表有這筆資料，但右邊的表沒有對應的資料。例如某艘船沒有船員，JOIN 後船員相關欄位就會顯示 NULL。
+
+---
+
+## 🚀 進階挑戰（選做）
+
+> 覺得本週內容太簡單？試試這題，不計分但歡迎挑戰。
+
+**設計一個「高雄港船舶進出管理系統」**
+
+1. 設計至少 3 張關聯表（例如：ships 船舶、berths 泊位、voyages 航次）
+2. 每張表至少 5 筆以上的測試資料
+3. 建立至少 1 個 VIEW：例如「目前停靠中的船舶清單」
+4. 寫至少 1 個子查詢：例如「找出平均停靠時間最長的船型」
+5. 畫出你的資料表關聯圖（手繪或用工具都行）
+
+想想看：真實的港口管理系統還需要哪些表？（貨物、船員、領港、拖船...）
